@@ -21,6 +21,8 @@ TODO: add text
 ## Task Wishlist
 - [x] Have the script self-install. To make it run, include single file
 - [x] Hitting ESC should hide the console
+- [ ] Write missing parts in Readme
+- [ ] Document the backend file
 - [ ] Ctrl+F should full-screen toggle
 - [ ] Pressing Ctrl+H should print out the help text
 - [ ] Make sure empty input doesn't get sent

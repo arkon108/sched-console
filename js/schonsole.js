@@ -38,7 +38,7 @@ var Sched = (function (S) {
     
     var run = function(input) {
       return $.post(S.console.config.endpoint, 
-                    {'schonsole.input':input});
+                    {'schonsole_input':input});
     }
     
     // accept the custom configuration
