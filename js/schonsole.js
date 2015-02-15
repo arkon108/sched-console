@@ -85,11 +85,7 @@ var Sched = (function (S) {
           .done(function(response) {
             console.log(response);
                 
-            /*Rainbow.color(response, 'php', function(styled) {
-              jqconsole.Write(styled + '\n', 'jqconsole-output', false);
-              startPrompt();
-            });*/
-            jqconsole.Write(styled + '\n', 'jqconsole-output', false);
+            jqconsole.Write(response + '\n', 'jqconsole-output', false);
             startPrompt();
             
           })
