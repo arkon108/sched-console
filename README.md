@@ -1,5 +1,4 @@
-# sched-console
-Schonsole v0.1
+# Schonsole v0.1
 
 Sched Live Console. Friendly wrapper around jq-console.
 
@@ -20,18 +19,20 @@ Not a replacement for SSH console
 TODO: add text
 
 ## Task Wishlist
+- [x] Have the script self-install. To make it run, include single file
+- [x] Hitting ESC should hide the console
+- [ ] Ctrl+F should full-screen toggle
+- [ ] Pressing Ctrl+H should print out the help text
 - [ ] Make sure empty input doesn't get sent
+- [ ] Implement the timeout for requests
 - [ ] Clicking on the document.body (outside of console) hides the console
 - [ ] Create several themes with different colors and prompts ( ☞ ☛ » ✌︎ ⚇ ≫ ⫸ ❱ ⭐️ 😾 💭 🎼 🔜 ► )
-- [ ] Pressing Ctrl+H should print out the help text
-- [ ] Ctrl+F should full-screen toggle
-- [ ] timeout for requests
 - [ ] Log the input history to localStorage, allow configuration
 - [ ] Display the time response time as status
 - [ ] Fetch additional often-needed backend data and display in an easy to expand manner
-- [ ] syntax highlighting?
+- [ ] Syntax highlighting?
 - [ ] Safeguard the backend eval, define behavior for errors
-- [ ] Syntax check (or well formedness) on input before sending to backend
+- [ ] Syntax check (or check well formedness) on input before sending to backend
 - [ ] Use autocomplete (common backend vars, language selected...)
 - [ ] Contextual mode - instead of 'endpoint', send the input to the *current* page
 - [ ] Do we want a blinking cursor?
