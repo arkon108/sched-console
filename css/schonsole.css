@@ -1,0 +1,74 @@
+/* The console container element */
+    #schonsole {
+      /*position: fixed;*/
+      position: fixed;
+      width: 100%;
+      height: 200px;
+      background-color:black;
+      bottom: -200px;
+      left: 0;
+      right: 0;
+      z-index: 99999;
+      transition: all 300ms cubic-bezier(1.000, -0.530, 0.405, 1.425);
+    }
+    
+    #schonsole.show {
+      transform: translateY(-200px);
+    }
+    
+    /* The inner console element. */
+    .jqconsole {
+        padding: 10px;
+    }
+    
+    .jqconsole-blurred {
+      opacity: .5;
+    }
+    
+    /* The cursor. */
+    .jqconsole-cursor {
+        background-color: gray;
+    }
+    
+    /* The cursor color when the console looses focus. */
+    .jqconsole-blurred .jqconsole-cursor {
+        background-color: #666;
+    }
+    /* The current prompt text color */
+    .jqconsole-prompt {
+        color: #0d0;
+    }
+    /* The command history */
+    .jqconsole-old-prompt {
+        color: #0b0;
+        font-weight: normal;
+    }
+    /* The text color when in input mode. */
+    .jqconsole-input {
+        color: #dd0;
+    }
+    /* Previously entered input. */
+    .jqconsole-old-input {
+        color: #bb0;
+        font-weight: normal;
+    }
+    /* The text color of the output. */
+    .jqconsole-output {
+        color: white;
+    }
+    
+    
+    
+    
+/* different themes ? */
+
+.schonsole-theme-stmataic .jqconsole {
+  background: black;
+  color: gold;
+}   
+    
+    
+    
+    
+      
+    
