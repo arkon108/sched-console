@@ -12,8 +12,8 @@ var Sched = (function (S) {
       prompt_next:  undefined,
       endpoint:     '',
       toggle_key:   "`", // tilde key,
-      close_key:    27,  // ESC TODO
-    },
+      close_key:    27,  // ESC key will close the console
+    };
 
     // private methods
     var on = function() {
@@ -100,69 +100,25 @@ var Sched = (function (S) {
       });
     };
 
-  /*
-          
-          Reasoning:
-            Sometimes we need to quickly prototype a piece of code or just dump some value
-            I wished for something like this for years, tried php-i, tried php-a,
-            asked Ante, he was using index.php to make sure he doesn't forget to clean up
-            Sometimes I just wanted to see if a code idea would work and the upload would take forever
-            There is no convention. 
-            Introducing: Schonsole 0.1 - The Sched Console
-            
-            Scope and focus?
-              - it's not an editor replacement
-            
-          Time: 2-3
-          -> TODO: clicking on the body hides the console
-          -> Sched Console v.0.1 (some useful data?)
-          -> Welcome X, 
-          -> custom prompts for every superadmin :)
-          -> move away if the rich characters mess things up
-          //     ☞ ☛ » ✌︎ ⚇ ≫ ⫸ ❱ ⭐️ 😾 💭 🎼 🔜 ►
-          - define the continue_label as well
-          - Ctrl+H prints help?
-          - timeout for requests
-          - log commands? load the previous history?
-          - time the response time and display as status
-          - inspector mode? like, dump globals and shit
-          - remembers user's history
-          - pretty print for big dumps? convenience function for that?
-            
-          - move entire JS into a bootstrapping file
-            - make script tags for jqconsole
-            - ajax call to load up the globals
-          - can I get the debug data from the exitCode() or similar shit?
-          - syntax highlighting?
-            http://craig.is/making/rainbows
-            https://highlightjs.org/usage/
-            https://code.google.com/p/google-code-prettify/
-            http://prismjs.com/
-          - safeguard the eval, wrap, establish error handling
-          - auto add ;
-          - make sure empty doesn't get sent
-          - quick 'n' dirty syntax check to prevent syntax errors before sending?
-          - autocomplete?
-            http://complete-ly.appspot.com/examples/web.browser.console.html
-            https://twitter.github.io/typeahead.js/
-          - pick up the data about the current page?
-          - blinking cursor?
-          - TODO: CTRL+F = full screen
-          - OMFG collaborative mode!?
-            - send a link to Amal, see when he opens it
-            - messaging
-            - examples I think about when chatting? -> console injection?
-            - YES! typing into each other's fucking console!
-          - consider making it truly independent, with a PHP endpoint to only be placed somewhere
-          - separate github?
-          - escape should close too
-          - make sure it works on editor too
-          - next step Scheditor lol
-        */
-
   S.console = {
     
-    exp:{on:on, off:off, isOn:isOn},
+    install: function() {
+      var that    = this;
+      var me      = 'js/schonsole.js';
+      var $script = $(['script[src*="',me,'"]'].join(''));
+      var base    = $script.attr('src').substr(0, $script.attr('src').indexOf(me));
+      var cssFile = ['<link rel="stylesheet" href="',base,'css/schonsole.css" type="text/css" />'].join('');
+      
+      $(cssFile).insertAfter($script);
+      
+      $.getScript( base+'js/jqconsole.js' )
+        .done(function( script, textStatus ) {
+          that.start(window.schonsole_config || {});
+        })
+        .fail(function( jqxhr, settings, exception ) {
+          console.log('Failed to load Sched Console');
+      });
+    },
     
     // populated at runtime
     config: {},
@@ -188,5 +144,5 @@ var Sched = (function (S) {
     
   };
   
-	return S;
-}(Sched || {}));
+  return S;
+}(Sched || {})).console.install();

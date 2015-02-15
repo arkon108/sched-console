@@ -19,6 +19,8 @@
     /* The inner console element. */
     .jqconsole {
         padding: 10px;
+        background: black;
+        color: gold;
     }
     
     .jqconsole-blurred {
@@ -56,16 +58,6 @@
     .jqconsole-output {
         color: white;
     }
-    
-    
-    
-    
-/* different themes ? */
-
-.schonsole-theme-stmataic .jqconsole {
-  background: black;
-  color: gold;
-}   
     
     
     
