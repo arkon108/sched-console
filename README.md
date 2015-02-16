@@ -1,26 +1,16 @@
 # Schonsole v0.1
+Sched Live Console. Simple wrapper around jq-console.
 
-Sched Live Console. Friendly wrapper around jq-console.
+
 
 ## Installation
-TODO: add text
-       
-## Origin Story
-Sometimes we need to quickly prototype a piece of code or just dump some value
-I wished for something like this for years, tried php-i, tried php-a,
-asked Ante, he was using index.php to make sure he doesn't forget to clean up
-Sometimes I just wanted to see if a code idea would work and the upload would take forever
-There was no convention. 
+Include the "schonsole.js" in your HTML with other Javascript files. Write your server evaluator and point the Schonsole to it.
 
-## Project scope
-Not a replacement for SSH console
-            
-## Features
-TODO: add text
 
 ## Task Wishlist
 - [x] Have the script self-install. To make it run, include single file
 - [x] Hitting ESC should hide the console
+- [ ] Add the #schonsole div to the installation
 - [ ] Write missing parts in Readme
 - [ ] Document the backend file
 - [ ] Ctrl+F should full-screen toggle
@@ -39,3 +29,5 @@ TODO: add text
 - [ ] Contextual mode - instead of 'endpoint', send the input to the *current* page
 - [ ] Do we want a blinking cursor?
 - [ ] Collaborative mode, make it possible to type in other user's console.
+- [ ] Include the Debug flag
+- [ ] Figure out a way to plug into every next request
