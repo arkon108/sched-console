@@ -29,6 +29,25 @@ var Sched = (function (S) {
       return $(S.console.config.container).hasClass('show');
     }
     
+    var fullOn = function() {
+      $(S.console.config.container).addClass('sch-full');
+    }
+    
+    var fullOff = function() {
+      $(S.console.config.container).removeClass('sch-full');
+    }
+    
+    var isFull = function() {
+      return $(S.console.config.container).hasClass('sch-full');
+    }
+    
+    var toggleFull = function() {
+      if (isFull()) { 
+        return fullOff();
+      }
+      return fullOn();
+    }
+    
     var toggle = function() {
       if (isOn()) { 
         return off();
@@ -47,6 +66,15 @@ var Sched = (function (S) {
     var configure = function(custom) {
       var ret = $.extend({}, defaults, custom);
       return ret;
+    }
+    
+    var assignShortcuts = function() {
+      for (var s in Sched.console.config.shortcuts) {
+        //S.console.engine(s, function() {
+          // call the engine
+          //this.Reset();  
+        //}); 
+      }
     }
     
     
@@ -83,7 +111,7 @@ var Sched = (function (S) {
         
         run(input)
           .done(function(response) {
-            console.log(response);
+            //console.log(response);
                 
             jqconsole.Write(response + '\n', 'jqconsole-output', false);
             startPrompt();
@@ -98,21 +126,24 @@ var Sched = (function (S) {
 
   S.console = {
     
+    exp: {
+      fullOn:fullOn,
+      fullOff:fullOff,
+      isFull:isFull,
+      toggleFull:toggleFull
+    },
+    
     engage: function() {
-      var that    = this;
-      var me      = 'js/schonsole.js';
-      var $script = $(['script[src*="',me,'"]'].join(''));
-      var base    = $script.attr('src').substr(0, $script.attr('src').indexOf(me));
-      var cssFile = ['<link rel="stylesheet" href="',base,'css/schonsole.css" type="text/css" />'].join('');
       
-      $(cssFile).insertAfter($script);
-      $('<div id='+that.config.container+'</div>').insertAfter($script);
+      var that    = this;
+      var $script = $('script[src*="schonsole.js"]');
+      var base    = $script.attr('src').substr(0, $script.attr('src').indexOf('js/schonsole.js'));
+      var cssFile = ['<link rel="stylesheet" href="',base,'css/schonsole.css?',(new Date().getTime()),'" type="text/css" />'].join('');
+      $(cssFile).insertBefore($script);
       
       $.getScript( base+'js/jqconsole.js' )
         .done(function( script, textStatus ) {
           that.start(window.schonsole_config || {});
-
-
         })
         .fail(function( jqxhr, settings, exception ) {
           console.log('Failed to load Sched Console');
@@ -129,7 +160,8 @@ var Sched = (function (S) {
     start: function(setup) {
       var that = this;
       that.config = configure(setup);
-      // react to keypresses
+      
+      $('<div id="'+that.config.container.substr(1)+'"></div>').insertAfter($('script[src*="schonsole.js"]'));
       watch();
       that.engine 
       = jqconsole 
@@ -138,10 +170,18 @@ var Sched = (function (S) {
                    that.config.prompt, 
                    that.config.prompt_next);
       
+      jqconsole.RegisterMatching('(', ')', 'paren');
+      jqconsole.RegisterMatching('<', '>', 'paren');
+      jqconsole.RegisterMatching('[', ']', 'paren');
+      jqconsole.RegisterMatching('{', '}', 'paren');
+      jqconsole.RegisterShortcut('F', function() {
+        toggleFull();  
+      }); 
       startPrompt();
     },
     
   };
   
   return S;
-}(Sched || {})).console.engage();
+}(Sched || {}));
+Sched.console.engage();

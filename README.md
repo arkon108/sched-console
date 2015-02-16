@@ -7,14 +7,12 @@ Sched Live Console. Simple wrapper around jq-console.
 Include the "schonsole.js" in your HTML with other Javascript files. Write your server evaluator and point the Schonsole to it.
 
 
-## Task Wishlist
+## Wishlist
 - [x] Have the script self-install. To make it run, include single file
 - [x] Hitting ESC should hide the console
-- [ ] Add the #schonsole div to the installation
-- [ ] Write missing parts in Readme
-- [ ] Document the backend file
-- [ ] Ctrl+F should full-screen toggle
-- [ ] Pressing Ctrl+H should print out the help text
+- [x] Add the #schonsole div to the installation
+- [x] Write missing parts in Readme
+- [x] Ctrl+F should full-screen toggle
 - [ ] Make sure empty input doesn't get sent
 - [ ] Implement the timeout for requests
 - [ ] Clicking on the document.body (outside of console) hides the console

@@ -59,6 +59,8 @@
         color: white;
     }
     
+    #schonsole.sch-full { height:100%; }
+    .paren { color: orange; }
     
     
     
