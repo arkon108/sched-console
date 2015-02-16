@@ -106,10 +106,13 @@ var Sched = (function (S) {
       var cssFile = ['<link rel="stylesheet" href="',base,'css/schonsole.css" type="text/css" />'].join('');
       
       $(cssFile).insertAfter($script);
+      $('<div id='+that.config.container+'</div>').insertAfter($script);
       
       $.getScript( base+'js/jqconsole.js' )
         .done(function( script, textStatus ) {
           that.start(window.schonsole_config || {});
+
+
         })
         .fail(function( jqxhr, settings, exception ) {
           console.log('Failed to load Sched Console');
