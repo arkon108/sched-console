@@ -98,7 +98,7 @@ var Sched = (function (S) {
 
   S.console = {
     
-    install: function() {
+    engage: function() {
       var that    = this;
       var me      = 'js/schonsole.js';
       var $script = $(['script[src*="',me,'"]'].join(''));
@@ -144,4 +144,4 @@ var Sched = (function (S) {
   };
   
   return S;
-}(Sched || {})).console.install();
+}(Sched || {})).console.engage();
